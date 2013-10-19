@@ -12,8 +12,6 @@ By installing the app you allow other Spotify users within your vicinity to eave
 ``` / ```
 Server for Music Hack Day creeper app
 
-+ 
-
 ``` /classified ``` 
 Spotfiy App 
 
