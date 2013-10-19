@@ -40,7 +40,7 @@ app.get('/user', function(req, res) {
         users.push(JSON.parse(userObj));
         if(i == keys.length) {
           // console.log(users);
-          res.send(users);
+          res.send(JSON.stringify(users));
         }
       });
     }     
