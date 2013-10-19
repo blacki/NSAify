@@ -25,17 +25,13 @@ http://mhdnyc.splashthat.com/
 #### Demo Video 
 http://vimeo.com/77298379
 
-(alternate link)
-https://www.dropbox.com/s/308ihaxfkvhmau1/NSAify.m4v
-
 #### Contact
 @blackili
 @hirthy
 @keccers
 @andmcgregor
 
-
-### Inspired by Related Work
+#### Inspired by Related Work
 http://www.pantheonapp.net/
 
 http://prismbreakup.org/#/participants/dean-hunt-olof-mathe-chanpory-rith
