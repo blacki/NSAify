@@ -22,7 +22,7 @@ app.get('/user', function(req, res) {
 	var timestamp = req.query.timestamp;
   
   res.send({
-  	'sucess' : {
+  	name : {
   	'track' : track,
   	'position' : position,
   	'timestamp' : timestamp
