@@ -13,12 +13,19 @@ app.get('/', function(req, res) {
   res.send('Hello NSA!');
 });
 
-app.get('/user', function(req, res) {
-	// console.log();
-  
+app.get('/user', function(req, res) { 
   var user = req.query;
-  res.send('Hello '+user.name+'!');
   setUser(user);
+  var users = [];
+  redis.keys("*", function (err, keys) {
+    for(var i = 0; i < keys.length; i++) {
+      redis.get(keys[i], function (err, val) {
+        userObj = val;
+        users.push(JSON.parse(userObj));
+        if(i == keys.length) res.send(users);
+      });
+    }     
+  });
 });
 
 var port = process.env.PORT || 5000;
@@ -42,12 +49,7 @@ redis.on("error", function (err) {
 //client.on("connect", runSample);
  
 function setUser(user) {
-    // Set a value
-    redis.set(user.name,JSON.stringify(user), function (err, reply) {
-        console.log(reply.toString());
-    });
-    // Get a value
-    redis.get(user.name, function (err, reply) {
-        console.log(reply.toString());
-    });
+  redis.set(user.name,JSON.stringify(user), function (err, reply) {
+    console.log(reply.toString());
+  });
 }
