@@ -13,23 +13,6 @@ app.get('/', function(req, res) {
   res.send('Hello NSA!');
 });
 
-app.get('/user', function(req, res) { 
-  var user = req.query;
-  setUser(user);
-  var users = [];
-  redis.keys("*", function (err, keys) {
-    for(var i = 0; i < keys.length; i++) {
-      redis.get(keys[i], function (err, val) {
-        userObj = val;
-        users.push(JSON.parse(userObj));
-        if(i == keys.length) {
-          console.log(users);
-          res.send(users);
-        }
-      });
-    }     
-  });
-});
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
@@ -39,11 +22,32 @@ app.listen(port, function() {
 if (process.env.REDISTOGO_URL) {
   var rtg   = require("url").parse(process.env.REDISTOGO_URL);
   var redis = require("redis").createClient(rtg.port, rtg.hostname);
-
   redis.auth(rtg.auth.split(":")[1]);
 } else {
   var redis = require("redis").createClient();
 }
+
+
+app.get('/user', function(req, res) { 
+  var user = req.query;
+  var userObj;
+  setUser(user);
+  var users = [];
+  redis.keys("*", function (err, keys) {
+    for(var i = 0; i < keys.length; i++) {
+      redis.get(keys[i], function (err, val) {
+        userObj = val;
+        users.push(JSON.parse(userObj));
+        if(i == keys.length) {
+          // console.log(users);
+          res.send(users);
+        }
+      });
+    }     
+  });
+});
+
+
 
 redis.on("error", function (err) {
     console.log("Error " + err);
