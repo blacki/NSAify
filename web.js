@@ -1,9 +1,10 @@
 var express = require('express');
 var app = express();
 // Add headers
-app.use(function (req, res, next) {
+app.options('/user',function (req, res) {
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.end('');
 });
 
 app.use(express.logger());
