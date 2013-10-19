@@ -3,7 +3,7 @@ var app = express();
 // Add headers
 app.options('/user',function (req, res) {
     // Website you wish to allow to connect
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
     res.end('');
 });
 
