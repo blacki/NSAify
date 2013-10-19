@@ -17,7 +17,17 @@ app.get('/user', function(req, res) {
 	// console.log();
 
 	var name = req.query.name;
-  res.send('Hello '+name+'!');
+	var track = req.query.track;
+	var position = req.query.position;
+	var timestamp = req.query.timestamp;
+  
+  res.send({
+  	'sucess' : {
+  	'track' : track,
+  	'position' : position,
+  	'timestamp' : timestamp
+  	}
+  });
 
 });
 
