@@ -22,7 +22,10 @@ app.get('/user', function(req, res) {
       redis.get(keys[i], function (err, val) {
         userObj = val;
         users.push(JSON.parse(userObj));
-        if(i == keys.length) res.send(users);
+        if(i == keys.length) {
+          console.log(users);
+          res.send(users);
+        }
       });
     }     
   });
